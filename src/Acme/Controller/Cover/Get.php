@@ -9,7 +9,8 @@
 namespace Acme\Controller\Cover;
 
 use Acme\Model\CoverModel;
-use Acme\View\Page\PageHtmlView;
+use Acme\View\Cover\CoverHtmlView;
+use Formosa\Controller\Controller;
 use Formosa\Utilities\Queue\Priority;
 
 /**
@@ -17,7 +18,7 @@ use Formosa\Utilities\Queue\Priority;
  *
  * @since 1.0
  */
-class Get extends \Formosa\Controller\Controller
+class Get extends Controller
 {
 	/**
 	 * Execute the controller.
@@ -32,7 +33,7 @@ class Get extends \Formosa\Controller\Controller
 	 */
 	public function execute()
 	{
-		$view = new PageHtmlView(new CoverModel, Priority::createQueue(FORMOSA_TEMPLATE . '/acme/cover'));
+		$view = new CoverHtmlView(new CoverModel, Priority::createQueue(FORMOSA_TEMPLATE . '/acme/cover'));
 
 		return $view->render();
 	}

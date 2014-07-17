@@ -26,11 +26,21 @@
                 </div>
 
                 <div class="inner cover">
-                    <h1 class="cover-heading">Cover your page.</h1>
-                    <p class="lead">Cover is a one-page template for building simple and beautiful home pages. Download, edit the text, and add your own fullscreen background photo to make it your own.</p>
-                    <p class="lead">
-                        <a href="#" class="btn btn-lg btn-default">Learn more</a>
-                    </p>
+                    {% if (content.isNull() is empty) %}
+                        {{ content.text|raw }}
+                        <p>
+                            Congrats, you imported schema success. You can run this command to rollback:
+
+                        <pre class="text-left"><code class="bash">$ php bin/phinx rollback</code></pre>
+                        </p>
+                    {% else %}
+                        <h1>You havn't import DB content</h1>
+                        <p>
+                            Please run this command:
+
+                            <pre class="text-left"><code class="bash">$ php bin/phinx migrate</code></pre>
+                        </p>
+                    {% endif %}
                 </div>
 
                 <div class="mastfoot">

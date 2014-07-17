@@ -9,6 +9,8 @@
 namespace Acme\Model;
 
 use Formosa\Model\DatabaseModel;
+use Windwalker\Data\Data;
+use Windwalker\DataMapper\DataMapper;
 
 /**
  * Class CoverModel
@@ -17,9 +19,21 @@ use Formosa\Model\DatabaseModel;
  */
 class CoverModel extends DatabaseModel
 {
-	public function getItems()
+	/**
+	 * getContent
+	 *
+	 * @return  \Windwalker\Data\Data
+	 */
+	public function getContent()
 	{
-
+		try
+		{
+			return (new DataMapper('acme_cover'))->findOne(array('id' => 1));
+		}
+		catch (\Exception $e)
+		{
+			return new Data;
+		}
 	}
 }
  

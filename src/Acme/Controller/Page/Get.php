@@ -9,6 +9,7 @@
 namespace Acme\Controller\Page;
 
 use Acme\View\Page\PageHtmlView;
+use Formosa\Controller\Controller;
 use Formosa\Utilities\Queue\Priority;
 
 /**
@@ -16,7 +17,7 @@ use Formosa\Utilities\Queue\Priority;
  *
  * @since 1.0
  */
-class Get extends \Formosa\Controller\Controller
+class Get extends Controller
 {
 	/**
 	 * Execute the controller.

@@ -47,19 +47,27 @@ $phinx = \Symfony\Component\Yaml\Yaml::parse($phinx);
 
 $phinx['paths']['migrations'] = __DIR__ . '/../etc/migrations';
 
+$phinx['environments']['production']['adapter'] = $config['database']['driver'];
 $phinx['environments']['production']['host'] = $config['database']['host'];
 $phinx['environments']['production']['name'] = $config['database']['name'];
 $phinx['environments']['production']['user'] = $config['database']['user'];
 $phinx['environments']['production']['pass'] = $config['database']['password'];
 
+$phinx['environments']['production']['adapter'] = $config['database']['driver'];
 $phinx['environments']['development']['host'] = $config['database']['host'];
 $phinx['environments']['development']['name'] = $config['database']['name'];
 $phinx['environments']['development']['user'] = $config['database']['user'];
 $phinx['environments']['development']['pass'] = $config['database']['password'];
 
+$phinx['environments']['production']['adapter'] = $config['database']['driver'];
 $phinx['environments']['testing']['host'] = $config['database']['host'];
 $phinx['environments']['testing']['name'] = $config['database']['name'];
 $phinx['environments']['testing']['user'] = $config['database']['user'];
 $phinx['environments']['testing']['pass'] = $config['database']['password'];
+
+// Prepare Joomla DB
+$db = \Windwalker\Database\DatabaseFactory::getDbo($config['database']);
+
+$db->select($config['database']['name']);
 
 return $phinx;
