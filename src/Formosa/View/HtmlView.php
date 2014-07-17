@@ -8,6 +8,9 @@
 
 namespace Formosa\View;
 
+use Formosa\Model\DatabaseModel;
+use Formosa\Utilities\Queue\Priority;
+use Joomla\Model\ModelInterface;
 use Joomla\View\AbstractHtmlView;
 use Windwalker\Data\Data;
 
@@ -31,6 +34,19 @@ class HtmlView extends AbstractHtmlView
 	 * @var  string
 	 */
 	protected $name = null;
+
+	/**
+	 * Method to instantiate the view.
+	 *
+	 * @param   ModelInterface    $model  The model object.
+	 * @param   \SplPriorityQueue $paths  The paths queue.
+	 */
+	public function __construct(ModelInterface $model = null, \SplPriorityQueue $paths = null)
+	{
+		$model = $model ? : new DatabaseModel;
+
+		parent::__construct($model, $paths);
+	}
 
 	/**
 	 * getData
@@ -72,6 +88,12 @@ class HtmlView extends AbstractHtmlView
 		{
 			$name = get_called_class();
 
+			// If we are using this class as default view, return default name.
+			if ($name == __CLASS__)
+			{
+				return $this->name = 'default';
+			}
+
 			$name = explode('\\', $name);
 
 			array_pop($name);
@@ -93,6 +115,22 @@ class HtmlView extends AbstractHtmlView
 	 */
 	protected function prepareData($data)
 	{
+	}
+
+	/**
+	 * Method to load the paths queue.
+	 *
+	 * @return  \SplPriorityQueue  The paths queue.
+	 *
+	 * @since   1.0
+	 */
+	protected function loadPaths()
+	{
+		$paths = parent::loadPaths();
+
+		$paths->insert(FORMOSA_TEMPLATE . '/' . $this->getName(), Priority::NORMAL);
+
+		return $paths;
 	}
 }
  

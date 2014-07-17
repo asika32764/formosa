@@ -34,7 +34,11 @@ class TwigHtmlView extends HtmlView
 		$loader = new \Twig_Loader_Filesystem(iterator_to_array($this->getPaths()));
 		$loader->addPath(FORMOSA_TEMPLATE . '/_global');
 
-		$twig = new \Twig_Environment($loader);
+		$config = array(
+			'debug' => DEBUG
+		);
+
+		$twig = new \Twig_Environment($loader, $config);
 
 		$twig->addExtension(new FormosaExtension);
 

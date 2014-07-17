@@ -134,7 +134,8 @@ class Application extends AbstractWebApplication
 
 			$routing->loadFile(FORMOSA_ETC . '/routing.yml', 'yaml');
 
-			$router->addMaps($routing->toArray())
+			$router->setDefaultController($routing->get('_default'))
+				->addMaps($routing->toArray())
 				->setMethodInPostRequest(true);
 
 			$this->router = $router;

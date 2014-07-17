@@ -1,5 +1,6 @@
 system:
     debug: 1
+    timezone: 'UTC'
 database:
     host: localhost
     user: root

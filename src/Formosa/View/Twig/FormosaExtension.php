@@ -9,7 +9,7 @@
 namespace Formosa\View\Twig;
 
 use Formosa\Factory;
-use Formosa\Helper\HelperSet;
+use Formosa\Helper\Set\HelperSet;
 
 /**
  * Class FormosaExtension
@@ -42,7 +42,8 @@ class FormosaExtension extends \Twig_Extension
 			'app' => $app,
 			'container' => Factory::getContainer(),
 			'helper' => new HelperSet,
-			'flash' => Factory::getSession()->getFlashBag()->all()
+			'flash' => Factory::getSession()->getFlashBag()->all(),
+			'datetime' => new \DateTime('now', new \DateTimeZone($app->get('system.timezone', 'UTC')))
 		);
 	}
 

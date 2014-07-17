@@ -1,6 +1,7 @@
 # System
 .*
 !.gitignore
+/www/.htaccess
 
 #config
 /etc/config.yml
