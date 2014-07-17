@@ -2,5 +2,8 @@
 .*
 !.gitignore
 
+#config
+/etc/config.yml
+
 # Composer
 /vendor

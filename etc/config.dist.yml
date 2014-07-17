@@ -1,0 +1,7 @@
+system:
+    debug: 1
+database:
+    host: localhost
+    user: root
+    password: ''
+    name: auth
