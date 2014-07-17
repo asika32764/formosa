@@ -11,6 +11,8 @@
 		"joomla/di" : "1.*",
 		"joomla/controller" : "1.*",
 		"joomla/view" : "1.*",
+		"joomla/cache" : "1.*",
+		"joomla/event" : "1.*",
 		"twig/twig" : "1.*",
 		"joomla/model" : "1.*",
 		"joomla/registry" : "1.*",
@@ -24,6 +26,9 @@
 	"autoload" : {
 		"psr-4" : {
 			"" : "src/"
-		}
+		},
+		"files": [
+			"src/Formosa/PHP/methods.php"
+		]
 	}
 }

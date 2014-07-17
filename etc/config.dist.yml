@@ -4,4 +4,4 @@ database:
     host: localhost
     user: root
     password: ''
-    name: auth
+    name: db_name

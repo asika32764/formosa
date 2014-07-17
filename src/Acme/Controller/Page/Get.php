@@ -6,16 +6,11 @@
  * @license    GNU General Public License version 2 or later; see LICENSE
  */
 
-namespace Formosa\Model;
+namespace Acme\Controller\Page;
 
-use Joomla\Model\AbstractModel;
 
-/**
- * Class PageModel
- *
- * @since 1.0
- */
-class PageModel extends AbstractModel
+class Get extends Controller
 {
+
 }
  
