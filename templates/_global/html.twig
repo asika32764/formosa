@@ -20,6 +20,7 @@
 
 </head>
 <body>
+    {% block navbar %}
     <div class="navbar navbar-inverse navbar-fixed-top">
         <div class="container">
             <div class="navbar-header">
@@ -43,26 +44,25 @@
             <!--/.nav-collapse -->
         </div>
     </div>
+    {% endblock %}
 
-    <div id="main-body">
-        {% block body %}Content{% endblock %}
-    </div>
+    {% block body %}Content{% endblock %}
 
+    {% block copyright %}
     <div id="copyright">
-        {% block copyright %}
-            <div class="container">
-                <div class="row">
-                    <div class="col-lg-12">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
 
-                        <hr />
+                    <hr />
 
-                        <footer>
-                            &copy; Formosa {{ datetime.format('Y') }}
-                        </footer>
-                    </div>
+                    <footer>
+                        &copy; Formosa {{ datetime.format('Y') }}
+                    </footer>
                 </div>
             </div>
-        {% endblock %}
+        </div>
     </div>
+    {% endblock %}
 </body>
 </html>

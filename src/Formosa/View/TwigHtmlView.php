@@ -42,6 +42,11 @@ class TwigHtmlView extends HtmlView
 
 		$twig->addExtension(new FormosaExtension);
 
+		if (DEBUG)
+		{
+			$twig->addExtension(new \Twig_Extension_Debug);
+		}
+
 		$data = $this->getData();
 
 		$data->view = new Data;

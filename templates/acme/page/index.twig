@@ -1,10 +1,15 @@
 {% extends 'html.twig' %}
 
 {% block style %}
-<link rel="stylesheet" href="{{ uri.base.path }}media/css/formosa.css" />
+<link rel="stylesheet" href="{{ uri.base.path }}media/css/acme/page.css" />
 {% endblock %}
 
 {% block siteTitle %}Acme Page{% endblock %}
+
+{% block nav %}
+    {{ parent() }}
+    <li><a href="{{ uri.base.path }}cover">Cover</a></li>
+{% endblock %}
 
 {% block body %}
     <!-- Main jumbotron for a primary marketing message or call to action -->
