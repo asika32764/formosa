@@ -68,6 +68,8 @@ $phinx['environments']['testing']['pass'] = $config['database']['password'];
 // Prepare Joomla DB
 $db = \Windwalker\Database\DatabaseFactory::getDbo($config['database']);
 
+$db->setQuery('CREATE DATABASE IF NOT EXISTS ' . $db->qn($config['database']['name']))->execute();
+
 $db->select($config['database']['name']);
 
 return $phinx;

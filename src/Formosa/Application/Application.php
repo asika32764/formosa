@@ -8,181 +8,52 @@
 
 namespace Formosa\Application;
 
-use Formosa\Factory;
-use Formosa\Provider\DatabaseProvider;
 use Formosa\Provider\WhoopsProvider;
-use Joomla\Application\AbstractWebApplication;
 use Joomla\DI\Container;
 use Joomla\Registry\Registry;
-use Joomla\Router\RestRouter;
 
 /**
  * Class Application
  *
  * @since 1.0
  */
-class Application extends AbstractWebApplication
+class Application extends WebApplication
 {
 	/**
-	 * Property router.
+	 * registerProviders
 	 *
-	 * @var  \Joomla\Router\Router
-	 */
-	protected $router = null;
-
-	/**
-	 * Property container.
-	 *
-	 * @var Container
-	 */
-	protected $container;
-
-	/**
-	 * initialise
+	 * @param Container $container
 	 *
 	 * @return  void
 	 */
-	protected function initialise()
+	protected function registerProviders(Container $container)
 	{
-		Factory::$app = $this;
+		parent::registerProviders($container);
 
-		$this->container = Factory::getContainer();
-
-		$this->container->registerServiceProvider(new DatabaseProvider($this->config));
-
-		define('DEBUG', $this->get('system.debug'));
-
-		if (DEBUG)
+		if (FORMOSA_DEBUG)
 		{
-			$this->container->registerServiceProvider(new WhoopsProvider($this->config));
+			$container->registerServiceProvider(new WhoopsProvider($this->config));
 		}
 	}
 
 	/**
-	 * Method to run the application routines.  Most likely you will want to instantiate a controller
-	 * and execute it, or perform some sort of task directly.
+	 * loadConfiguration
 	 *
+	 * @param Registry $config
+	 *
+	 * @throws  \RuntimeException
 	 * @return  void
-	 *
-	 * @since   1.0
 	 */
-	protected function doExecute()
+	protected function loadConfiguration($config)
 	{
-		Factory::getSession()->start();
+		$file = FORMOSA_ETC . '/config.yml';
 
-		$router = $this->getRouter();
-
-		$controller = $router->getController($this->get('uri.route'));
-
-		$content = $controller->execute();
-
-		$this->setBody($content);
-	}
-
-	/**
-	 * Execute the application.
-	 *
-	 * @return  void
-	 *
-	 * @since   1.0
-	 */
-	public function execute()
-	{
-		// @event onBeforeExecute
-
-		// Perform application routines.
-		$this->doExecute();
-
-		// @event onAfterExecute
-
-		// If gzip compression is enabled in configuration and the server is compliant, compress the output.
-		if ($this->get('gzip') && !ini_get('zlib.output_compression') && (ini_get('output_handler') != 'ob_gzhandler'))
+		if (!is_file($file))
 		{
-			$this->compress();
+			exit('Please copy config.dist.yml to config.yml');
 		}
 
-		// @event onBeforeRespond
-
-		// Send the application response.
-		$this->respond();
-
-		// @event onAfterRespond
-	}
-
-	/**
-	 * respond
-	 *
-	 * @return  void
-	 */
-	public function respond()
-	{
-		parent::respond();
-	}
-
-	/**
-	 * getRouter
-	 *
-	 * @return  \Joomla\Router\Router
-	 */
-	public function getRouter()
-	{
-		if (!$this->router)
-		{
-			$router = new RestRouter($this->input);
-
-			$routing = new Registry;
-
-			$routing->loadFile(FORMOSA_ETC . '/routing.yml', 'yaml');
-
-			$router->setDefaultController($routing->get('_default'))
-				->addMaps($routing->toArray())
-				->setMethodInPostRequest(true);
-
-			$this->router = $router;
-		}
-
-		return $this->router;
-	}
-
-	/**
-	 * getContainer
-	 *
-	 * @return  \Joomla\DI\Container
-	 */
-	public function getContainer()
-	{
-		return $this->container;
-	}
-
-	/**
-	 * setContainer
-	 *
-	 * @param   \Joomla\DI\Container $container
-	 *
-	 * @return  Application  Return self to support chaining.
-	 */
-	public function setContainer(Container $container)
-	{
-		$this->container = $container;
-
-		return $this;
-	}
-
-	/**
-	 * addFlash
-	 *
-	 * @param string $message
-	 * @param string $type
-	 *
-	 * @return  Application
-	 */
-	public function addFlash($message, $type = 'info')
-	{
-		$session = Factory::getSession();
-
-		$session->getFlashBag()->add($type, $message);
-
-		return $this;
+		$config->loadFile($file, 'yaml');
 	}
 }
  

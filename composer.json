@@ -3,23 +3,9 @@
 	"description": "A light framework named by Taiwan.",
 	"homepage": "https://github.com/asika32764/formosa",
 	"license": "GNU Lesser General Public License",
-	"minimum-stability": "beta",
+	"minimum-stability": "dev",
 	"require" : {
-		"windwalker/framework" : "1.*",
-		"joomla/application" : "1.*",
-		"joomla/router" : "1.*",
-		"joomla/di" : "1.*",
-		"joomla/controller" : "1.*",
-		"joomla/view" : "1.*",
-		"joomla/model" : "1.*",
-		"joomla/registry" : "1.*",
-		"joomla/cache" : "1.*",
-		"joomla/event" : "1.*",
-		"joomla/date" : "1.*",
-		"joomla/uri" : "1.*",
-		"twig/twig" : "1.*",
-		"symfony/yaml" : "2.*",
-		"symfony/http-foundation" : "2.*",
+		"asika/formosa-core" : "dev-master#ce70ffeb70afb35e579093d4d5c8d9fa76099a74",
 		"robmorgan/phinx": "*"
 	},
 	"require-dev" : {
@@ -28,9 +14,6 @@
 	"autoload" : {
 		"psr-4" : {
 			"" : "src/"
-		},
-		"files": [
-			"src/Formosa/PHP/methods.php"
-		]
+		}
 	}
 }

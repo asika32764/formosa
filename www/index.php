@@ -6,21 +6,17 @@
  * @license    GNU General Public License version 2 or later; see LICENSE
  */
 
-define('FORMOSA_ROOT',      realpath(__DIR__ . '/..'));
-define('FORMOSA_WWW',       __DIR__);
-define('FORMOSA_TEMPLATE',  FORMOSA_ROOT . '/templates');
-define('FORMOSA_SOURCE',    FORMOSA_ROOT . '/src');
-define('FORMOSA_RESOURCES', FORMOSA_ROOT . '/resources');
-define('FORMOSA_ETC',       FORMOSA_ROOT . '/etc');
+$autoload = __DIR__ . '/../vendor/autoload.php';
 
-define('JPATH_ROOT',       FORMOSA_ROOT);
+if (!is_file($autoload))
+{
+	exit('Please run <code>$ composer install</code> First.');
+}
 
-include __DIR__ . '/../vendor/autoload.php';
+define('FORMOSA_ROOT', realpath(__DIR__ . '/..'));
 
-$config = new \Joomla\Registry\Registry;
+include_once __DIR__ . '/../vendor/asika/formosa-core/src/init.php';
 
-$config->loadFile(FORMOSA_ETC . '/config.yml', 'yaml');
+include_once $autoload;
 
-$input = new \Joomla\Input\Input;
-
-(new \Formosa\Application\Application($input, $config))->execute();
+(new \Formosa\Application\Application)->execute();
