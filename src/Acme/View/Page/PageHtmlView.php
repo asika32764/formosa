@@ -8,6 +8,7 @@
 
 namespace Acme\View\Page;
 
+use Formosa\View\HtmlView;
 use Formosa\View\TwigHtmlView;
 
 /**
@@ -15,7 +16,7 @@ use Formosa\View\TwigHtmlView;
  *
  * @since 1.0
  */
-class PageHtmlView extends TwigHtmlView
+class PageHtmlView extends HtmlView
 {
 	/**
 	 * prepareData
