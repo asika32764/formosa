@@ -13,7 +13,7 @@ $second = 5;
 
 while (true)
 {
-	file_get_contents($argv[1] . '/www');
+	file_get_contents($argv[1]);
 
 	echo '.';
 
@@ -21,7 +21,7 @@ while (true)
 
 	if (($current_time - $start_time) >= $second)
 	{
-		echo sprintf("%s times in %s seconds.", $i, $second) . "\n\n";
+		echo sprintf("\n\n%s times in %s seconds.", $i, $second) . "\n\n";
 
 		die;
 	}
