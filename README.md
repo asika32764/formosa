@@ -5,7 +5,7 @@ This is Formosa Framework starter package.
 ## Installation Via Composer
 
 ``` bash
-$ php composer.phar create-project asika/formosa 1.0.*
+$ php composer.phar create-project asika/formosa formosa 1.0.*
 ```
 
 ## Getting Started
