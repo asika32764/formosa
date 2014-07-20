@@ -26,7 +26,6 @@ class CoverHtmlView extends TwigHtmlView
 	 */
 	protected function prepareData($data)
 	{
-		$data->content = $this->model->getContent();
 	}
 }
  

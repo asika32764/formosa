@@ -10,15 +10,16 @@ namespace Acme\Controller\Cover;
 
 use Acme\Model\CoverModel;
 use Acme\View\Cover\CoverHtmlView;
-use Formosa\Controller\Controller;
+use Formosa\Factory;
 use Formosa\Utilities\Queue\Priority;
+use Windwalker\Controller\AbstractController;
 
 /**
  * Class Get
  *
  * @since 1.0
  */
-class Get extends Controller
+class Get extends AbstractController
 {
 	/**
 	 * Execute the controller.
@@ -33,9 +34,13 @@ class Get extends Controller
 	 */
 	public function execute()
 	{
-		$view = new CoverHtmlView(new CoverModel, Priority::createQueue(FORMOSA_TEMPLATE . '/acme/cover'));
+		$model = new CoverModel(Factory::getDbo());
 
-		return $view->render();
+		$content = $model->getContent();
+
+		$view = new CoverHtmlView(null, Priority::createQueue(FORMOSA_TEMPLATE . '/acme/cover'));
+
+		return $view->set('content', $content)->render();
 	}
 }
  

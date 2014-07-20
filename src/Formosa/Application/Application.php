@@ -11,6 +11,7 @@ namespace Formosa\Application;
 use Formosa\Provider\WhoopsProvider;
 use Joomla\DI\Container;
 use Joomla\Registry\Registry;
+use Windwalker\Router\RestRouter;
 
 /**
  * Class Application
@@ -54,6 +55,29 @@ class Application extends WebApplication
 		}
 
 		$config->loadFile($file, 'yaml');
+	}
+
+	/**
+	 * getRouter
+	 *
+	 * @return  \Joomla\Router\Router
+	 */
+	public function getRouter()
+	{
+		if (!$this->router)
+		{
+			$router = new RestRouter($this->input);
+
+			$routing = $this->loadRoutingConfiguration();
+
+			$router->setDefaultController($routing['_default'])
+				->addMaps($routing)
+				->setMethodInPostRequest(true);
+
+			$this->router = $router;
+		}
+
+		return $this->router;
 	}
 }
  

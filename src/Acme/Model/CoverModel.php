@@ -8,16 +8,16 @@
 
 namespace Acme\Model;
 
-use Formosa\Model\DatabaseModel;
 use Windwalker\Data\Data;
 use Windwalker\DataMapper\DataMapper;
+use Windwalker\Model\AbstractDatabaseModel;
 
 /**
  * Class CoverModel
  *
  * @since 1.0
  */
-class CoverModel extends DatabaseModel
+class CoverModel extends AbstractDatabaseModel
 {
 	/**
 	 * getContent

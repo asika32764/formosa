@@ -9,16 +9,16 @@
 namespace Acme\Controller\Page;
 
 use Acme\View\Page\PageHtmlView;
-use Formosa\Controller\Controller;
-use Formosa\Renderer\PhpRenderer;
 use Formosa\Utilities\Queue\Priority;
+use Windwalker\Controller\AbstractController;
+use Windwalker\Renderer\PhpRenderer;
 
 /**
  * Class Get
  *
  * @since 1.0
  */
-class Get extends Controller
+class Get extends AbstractController
 {
 	/**
 	 * Execute the controller.
@@ -33,7 +33,9 @@ class Get extends Controller
 	 */
 	public function execute()
 	{
-		$view = new PageHtmlView(null, Priority::createQueue(FORMOSA_TEMPLATE . '/acme/page'), new PhpRenderer);
+		$renderer = new PhpRenderer(Priority::createQueue(FORMOSA_TEMPLATE . '/acme/page'));
+
+		$view = new PageHtmlView(array(), $renderer);
 
 		return $view->setLayout('index')->render();
 	}

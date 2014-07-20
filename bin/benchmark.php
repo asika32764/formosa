@@ -8,12 +8,19 @@
 
 $start_time = microtime(TRUE);
 
+$url    = isset($argv[1]) ? $argv[1] : exit("Please type utl to benchmark.\n");
+$second = isset($argv[2]) ? $argv[2] : 5;
+
 $i = 1;
-$second = 5;
 
 while (true)
 {
-	file_get_contents($argv[1]);
+	$r = file_get_contents($argv[1]);
+
+	if ($i == 1)
+	{
+		echo $r . "\n\n----------------------\nStart Benchmark:\n";
+	}
 
 	echo '.';
 
