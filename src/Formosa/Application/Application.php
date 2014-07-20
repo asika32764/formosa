@@ -9,8 +9,8 @@
 namespace Formosa\Application;
 
 use Formosa\Provider\WhoopsProvider;
-use Joomla\DI\Container;
 use Joomla\Registry\Registry;
+use Windwalker\DI\Container;
 use Windwalker\Router\RestRouter;
 
 /**

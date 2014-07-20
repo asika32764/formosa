@@ -37,11 +37,11 @@ abstract class AbstractRenderer implements RendererInterface
 	 * @param \SplPriorityQueue $paths
 	 * @param array             $config
 	 */
-	public function __construct(\SplPriorityQueue $paths = null, $config = array())
+	public function __construct($paths = null, $config = array())
 	{
-		$this->paths = ($paths instanceof \SplPriorityQueue) ? $paths : new \SplPriorityQueue;
+		$this->setPaths($paths);
 
-		$this->config = new Registry($config);
+		$this->config = new Registry($this->config);
 
 		$this->config->loadArray($config);
 	}
@@ -110,6 +110,18 @@ abstract class AbstractRenderer implements RendererInterface
 	 */
 	public function setPaths($paths)
 	{
+		if (!($paths instanceof \SplPriorityQueue))
+		{
+			$priority = new \SplPriorityQueue;
+
+			foreach ((array) $paths as $path)
+			{
+				$priority->insert($path, 1);
+			}
+
+			$paths = $priority;
+		}
+
 		$this->paths = $paths;
 
 		return $this;
