@@ -70,7 +70,9 @@ class Application extends WebApplication
 
 			$routing = $this->loadRoutingConfiguration();
 
-			$router->setDefaultController($routing['_default'])
+			$router->setMethod($this->input->getMethod())
+				->setCustomMethod($this->input->get->get('_method'))
+				->setDefaultController($routing['_default'])
 				->addMaps($routing)
 				->setMethodInPostRequest(true);
 
