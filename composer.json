@@ -5,7 +5,8 @@
 	"license": "GNU Lesser General Public License",
 	"minimum-stability": "beta",
 	"require" : {
-		"asika/formosa-core" : "1.*",
+		"asika/formosa-core" : "dev-staging",
+		"joomla/database" : "1.*",
 		"robmorgan/phinx": "*"
 	},
 	"require-dev" : {
