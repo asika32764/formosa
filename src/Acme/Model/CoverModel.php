@@ -28,7 +28,7 @@ class CoverModel extends AbstractDatabaseModel
 	{
 		try
 		{
-			return (new DataMapper('acme_cover'))->findOne(array('id' => 1));
+			$r = (new DataMapper('acme_cover'))->findOne(array('id' => 1));
 		}
 		catch (\Exception $e)
 		{
