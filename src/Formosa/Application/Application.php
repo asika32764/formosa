@@ -9,9 +9,8 @@
 namespace Formosa\Application;
 
 use Formosa\Provider\WhoopsProvider;
-use Joomla\Registry\Registry;
 use Windwalker\DI\Container;
-use Windwalker\Router\RestRouter;
+use Windwalker\Registry\Registry;
 
 /**
  * Class Application
@@ -20,6 +19,16 @@ use Windwalker\Router\RestRouter;
  */
 class Application extends WebApplication
 {
+	/**
+	 * initialise
+	 *
+	 * @return  void
+	 */
+	protected function initialise()
+	{
+		parent::initialise();
+	}
+
 	/**
 	 * registerProviders
 	 *

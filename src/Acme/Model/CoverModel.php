@@ -8,16 +8,16 @@
 
 namespace Acme\Model;
 
+use Formosa\Model\Model;
 use Windwalker\Data\Data;
 use Windwalker\DataMapper\DataMapper;
-use Windwalker\Model\AbstractDatabaseModel;
 
 /**
  * Class CoverModel
  *
  * @since 1.0
  */
-class CoverModel extends AbstractDatabaseModel
+class CoverModel extends Model
 {
 	/**
 	 * getContent
@@ -28,10 +28,15 @@ class CoverModel extends AbstractDatabaseModel
 	{
 		try
 		{
-			$r = (new DataMapper('acme_cover'))->findOne(array('id' => 1));
+			return (new DataMapper('acme_cover'))->findOne(array('id' => 1));
 		}
 		catch (\Exception $e)
 		{
+			if (FORMOSA_DEBUG)
+			{
+				throw new $e;
+			}
+
 			return new Data;
 		}
 	}

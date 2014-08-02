@@ -6,7 +6,6 @@
 	"minimum-stability": "beta",
 	"require" : {
 		"asika/formosa-core" : "dev-staging",
-		"joomla/database" : "1.*",
 		"robmorgan/phinx": "*"
 	},
 	"require-dev" : {

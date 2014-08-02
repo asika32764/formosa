@@ -34,7 +34,7 @@ class Get extends AbstractController
 	 */
 	public function execute()
 	{
-		$model = new CoverModel(Factory::getDbo());
+		$model = new CoverModel;
 
 		$content = $model->getContent();
 
