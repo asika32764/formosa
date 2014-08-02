@@ -1,6 +1,8 @@
 # Formosa Framework Starter
 
-This is Formosa Framework starter package.
+This is Formosa starter package.
+
+Formosa is a starter package of [Windwalker Framework](https://github.com/ventoviro/windwalker).
 
 ## Installation Via Composer
 
@@ -10,7 +12,7 @@ $ php composer.phar create-project asika/formosa formosa 1.0.*
 
 ## Getting Started
 
-Copy `etc/config.dist.yml` to `etc/config.yml` and fill database information.
+Copy `etc/config.dist.yml`  to `etc/config.yml` and fill database information.
 
 Open `http://{Your project root}/www`, you will see sample page.
 
@@ -43,8 +45,3 @@ The DB will auto import.
 This is the result page:
 
 ![img](https://cloud.githubusercontent.com/assets/1639206/3625396/d35b85ec-0e6a-11e4-80e0-3a75cc3daee1.png)
-
-
-
-
-
